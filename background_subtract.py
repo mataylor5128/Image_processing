@@ -162,6 +162,18 @@ def infill(back_im_cube):
 
 	return back_im_cube
 
+def send_err_msg():
+	content = MIMEText("Oops, I stopped working...")
+	content["Subject"] = "Background subtraction error."
+
+	mail = smtplib.SMTP('smtp.gmail.com',587)
+	mail.ehlo()
+	mail.starttls()
+	mail.login('me_here_now@gmail.com','my_silly_password')
+	mail.sendmail('me_here_now@gmail.com','you_there_now@gmail.com',content.as_string())
+	mail.close()
+	print "Error message sent."	
+
 import pyfits
 import numpy as np
 import glob
@@ -177,6 +189,9 @@ import time
 #from random import randint
 import random
 import inpaint
+from email.mime.text import MIMEText
+import smtplib
+
 
 start_time = time.time()
 
@@ -478,6 +493,10 @@ if sys.argv[1] == "median" or sys.argv[1] == "median global":# or sys.argv[1] ==
 		  results[chip_num+chip_start] = q.get()#result1 = q.get()
 		  #im_data[0][chip_num+chip_start] = results[chip_num+chip_start][0] #result1[0]
 		  #med_back_data[0][chip_num+chip_start] = results[chip_num+chip_start][1] #result1[1]
+		  if chip_num+chip_start != results[chip_num+chip_start][2]:
+			print chip_num+chip_start, results[chip_num+chip_start][2]
+		  	send_err_msg()
+		  	exit()
 		  im_data[0][results[chip_num+chip_start][2]] = results[chip_num+chip_start][0] #result1[0]
 		  med_back_data[0][results[chip_num+chip_start][2]] = results[chip_num+chip_start][1] #result1[1]
 		chip_start+=n_procs_max
