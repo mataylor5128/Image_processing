@@ -18,21 +18,53 @@ import matplotlib.pyplot as plt
 #from PIL import Image
 #from PIL import ImageEnhance
 
-stack_dir='/Volumes/data/stacks'
-stack_tile=['1','2','3']
-stack_tile_ref='1'
-stack_filter=['i','g','u']
+stack_dir='/Volumes/Q6/matt/stacks'
+#stack_dir='/Users/matt/Desktop'
+weight_dir='/Volumes/Q6/matt/stacks'
+stack_tile=['2']#,'2','3']
+stack_tile_ref='2'
+stack_filter=['i','r','g']
 stack_filter_ref='i'
 stack_version='1'
 
-stack_im_file=['im_tileX_i.fits','im_tileX_g_ALIGNi.fits','im_tileX_u_ALIGNi.fits']
-stack_weight_file=['im_tileX_i.WEIGHT.fits','im_tileX_g_ALIGNi.WEIGHT.fits','im_tileX_u_ALIGNi.WEIGHT.fits']
-stack_mask_file=['im_tileX_i.MASK.fits','im_tileX_g_ALIGNi.MASK.fits','im_tileX_u_ALIGNi.MASK.fits']
+#stack_im_file=['survey_tileX_%s_short_ALIGN%s.fits' % (stack_filter[0],stack_filter_ref),'survey_tileX_%s_short.fits' % stack_filter[1],'survey_tileX_%s_short_ALIGN%s.fits' % (stack_filter[2],stack_filter_ref)]
+#stack_im_file=['ss_survey_tileX_%s_short.004.fits' % (stack_filter[0]),'ss_survey_tileX_%s_short_ALIGN%s.004.fits' % (stack_filter[1],stack_filter_ref),'ss_survey_tileX_%s_short_ALIGN%s.004.fits' % (stack_filter[2],stack_filter_ref)]
+stack_im_file=['survey_tileX_%s_short.fits' % (stack_filter[0]),'survey_tileX_%s_short_ALIGN%s.fits' % (stack_filter[1],stack_filter_ref),'survey_tileX_%s_short_ALIGN%s.fits' % (stack_filter[2],stack_filter_ref)]
+#stack_weight_file=['survey_tileX_%s_short_ALIGN%s.WEIGHT.fits' % (stack_filter[0],stack_filter_ref),'survey_tileX_%s_short.WEIGHT.fits' % stack_filter[1],'survey_tileX_%s_short_ALIGN%s.WEIGHT.fits' % (stack_filter[2],stack_filter_ref)]
+#stack_weight_file=['ss_survey_tileX_%s_short.004.WEIGHT.fits' % (stack_filter[0]),'ss_survey_tileX_%s_short_ALIGN%s.004.WEIGHT.fits' % (stack_filter[1],stack_filter_ref),'ss_survey_tileX_%s_short_ALIGN%s.004.WEIGHT.fits' % (stack_filter[2],stack_filter_ref)]
+stack_weight_file=['survey_tileX_%s_short.WEIGHT.fits' % (stack_filter[0]),'survey_tileX_%s_short_ALIGN%s.WEIGHT.fits' % (stack_filter[1],stack_filter_ref),'survey_tileX_%s_short_ALIGN%s.WEIGHT.fits' % (stack_filter[2],stack_filter_ref)]
+#stack_mask_file=['survey_tileX_%s_short_ALIGN%s.MASK.fits' % (stack_filter[0],stack_filter_ref),'survey_tileX_%s_short.MASK.fits' % stack_filter[1],'survey_tileX_%s_short_ALIGN%s.MASK.fits' % (stack_filter[2],stack_filter_ref)]
+#stack_mask_file=['ss_survey_tileX_%s_short.004.MASK.fits' % stack_filter[0],'ss_survey_tileX_%s_short.004.MASK.fits' % stack_filter[1],'survey_tileX_%s_short.004.MASK.fits' % stack_filter[2]]
+stack_mask_file=['survey_tileX_%s_short.MASK.fits' % stack_filter[0],'survey_tileX_%s_short.MASK.fits' % stack_filter[1],'survey_tileX_%s_short.MASK.fits' % stack_filter[2]]
+# stack_im_file=['survey_tileX_%s_short.fits' % stack_filter[0],'survey_tileX_%s_short_ALIGN%s.fits' % (stack_filter[1],stack_filter_ref),'survey_tileX_%s_short_ALIGN%s.fits' % (stack_filter[2],stack_filter_ref)]
+# stack_weight_file=['survey_tileX_%s_short.WEIGHT.fits' % stack_filter[0],'survey_tileX_%s_short_ALIGN%s.WEIGHT.fits' % (stack_filter[1],stack_filter_ref),'survey_tileX_%s_short_ALIGN%s.WEIGHT.fits' % (stack_filter[2],stack_filter_ref)]
+# #stack_mask_file=['survey_tileX_%s_short_ALIGN%s.MASK.fits' % (stack_filter[0],stack_filter_ref),'survey_tileX_%s_short.MASK.fits' % stack_filter[1],'survey_tileX_%s_short_ALIGN%s.MASK.fits' % (stack_filter[2],stack_filter_ref)]
+# stack_mask_file=['survey_tileX_%s_short.MASK.fits' % stack_filter[0],'survey_tileX_%s_short.MASK.fits' % stack_filter[1],'survey_tileX_%s_short.MASK.fits' % stack_filter[2]]
 
+# stack_im_file_full = [[stack_dir+'/'+im_file.replace('tileX','tile'+im_tile) for im_file in stack_im_file] for im_tile in stack_tile]
+# stack_weight_file_full = [[stack_dir+'/'+im_file.replace('tileX','tile'+im_tile) for im_file in stack_weight_file] for im_tile in stack_tile]
+# stack_mask_file_full = [[stack_dir+'/'+im_file.replace('tileX','tile'+im_tile) for im_file in stack_mask_file] for im_tile in stack_tile]
+# stack_rgb_file_full=[stack_dir+'/stack_tile'+im_tile+'_rgb.fits' for im_tile in stack_tile]
 stack_im_file_full = [[stack_dir+'/'+im_file.replace('tileX','tile'+im_tile) for im_file in stack_im_file] for im_tile in stack_tile]
-stack_weight_file_full = [[stack_dir+'/'+im_file.replace('tileX','tile'+im_tile) for im_file in stack_weight_file] for im_tile in stack_tile]
-stack_mask_file_full = [[stack_dir+'/'+im_file.replace('tileX','tile'+im_tile) for im_file in stack_mask_file] for im_tile in stack_tile]
+stack_weight_file_full = [[weight_dir+'/'+im_file.replace('tileX','tile'+im_tile) for im_file in stack_weight_file] for im_tile in stack_tile]
+stack_mask_file_full = [[weight_dir+'/'+im_file.replace('tileX','tile'+im_tile) for im_file in stack_mask_file] for im_tile in stack_tile]
 stack_rgb_file_full=[stack_dir+'/stack_tile'+im_tile+'_rgb.fits' for im_tile in stack_tile]
+
+print stack_im_file_full
+print stack_weight_file_full
+print stack_mask_file_full
+print stack_rgb_file_full
+
+# for ii in range(len(stack_im_file_full[0])):
+# 	if os.path.exists(stack_im_file_full[0][ii]) != True:
+#  		print stack_im_file_full[0][ii]+" does not exist."
+#  		exit()
+# 	if os.path.exists(stack_weight_file_full[0][ii]) != True:
+#  		print stack_im_file_full[0][ii]+" does not exist."
+#  		exit()
+# 	if os.path.exists(stack_mask_file_full[0][ii]) != True:
+#  		print stack_im_file_full[0][ii]+" does not exist."
+#  		exit()
 
 for i in range(len(stack_im_file_full)):
 
@@ -74,8 +106,12 @@ for i in range(len(stack_im_file_full)):
 				hdulist = pyfits.open(weight_file)
 				weight_data=hdulist[0].data
 				hdulist.close()
+
+				print "Check1"
 		
 				bv_weight = (weight_data==0.)
+
+				print "CHeck2"
 				im_data[bv_weight]=np.nan
 		
 				print 'Image size along X-axis ', im_h['NAXIS1']
@@ -192,7 +228,7 @@ for i in range(len(stack_im_file_full)):
 					plt.xlabel('Flux')
 					plt.ylabel('Number count')
 	
-					if stack_filter[j]=='i':
+					if stack_filter[j]=='i': #always the first filter in list
 						hist, bin_edges = np.histogram( im_data, bins=np.linspace(stack_rgb_limit[j,0], stack_rgb_limit[j,1], hist_nbin), range=stack_rgb_limit[j,:] )
 						stack_rgb_ratio_ref= [ hist[0]*1./np.amax(hist), hist[-1]*1./np.amax(hist) ]
 						gv_max=np.argmax(hist)
