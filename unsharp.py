@@ -64,7 +64,7 @@ print "Writing masked image..."
 pyfits.writeto('%snosource.fits' % prefixout,nosource,header,clobber=True)
 
 #Blur the source-free original
-filt_size = 25
+filt_size = 151
 print "Blurring image with %i-pixel median filter..." % filt_size
 blurred = nd.median_filter(nosource,filt_size)
 print "Done."
