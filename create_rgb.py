@@ -54,6 +54,7 @@ print stack_im_file_full
 print stack_weight_file_full
 print stack_mask_file_full
 print stack_rgb_file_full
+<<<<<<< Updated upstream
 
 # for ii in range(len(stack_im_file_full[0])):
 # 	if os.path.exists(stack_im_file_full[0][ii]) != True:
@@ -65,6 +66,9 @@ print stack_rgb_file_full
 # 	if os.path.exists(stack_mask_file_full[0][ii]) != True:
 #  		print stack_im_file_full[0][ii]+" does not exist."
 #  		exit()
+=======
+exit()
+>>>>>>> Stashed changes
 
 for i in range(len(stack_im_file_full)):
 
