@@ -59,6 +59,8 @@ if sys.argv[1] == 'full':
 print "\nMasking image..."
 nosource = cutout
 bv_mask = (mask_cutout != 0.)
+print bv_mask
+exit()
 nosource[bv_mask]=np.nan
 print "Writing masked image..."
 pyfits.writeto('%snosource.fits' % prefixout,nosource,header,clobber=True)
